@@ -5,9 +5,11 @@ import Category from './Category';
 function NewsPage() {
 
   const country = "in";
-  const categories = ["general", "entertainment", "health", "science", "sports", "technology"];
+  const categories = ["top", "entertainment", "health", "science", "sports", "technology"];
   
-  const [requestURL, setRequestURL] = useState(`https://newsapi.org/v2/top-headlines?country=${country}&category=general&apiKey=${import.meta.env.VITE_API_KEY}`);
+  const [requestURL, setRequestURL] = useState(
+    `/.netlify/functions/news?country=${country}&category=general`
+  );
 
   const [articles, setArticles] = useState([]);
   const [activeCategory, setActiveCategory] = useState("general");
@@ -38,13 +40,13 @@ function NewsPage() {
   };
 
   const selectCategory = (category) => {
-    setRequestURL(`https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${import.meta.env.VITE_API_KEY}`);
+    setRequestURL(`/.netlify/functions/news?country=${country}&category=${category}`);
     setActiveCategory(category);
   };
 
   useEffect(() => {
     getNews();
-  });
+  },[requestURL]);
 
   return (
     <>
