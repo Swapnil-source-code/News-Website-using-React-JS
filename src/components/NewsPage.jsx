@@ -8,11 +8,11 @@ function NewsPage() {
   const categories = ["top", "entertainment", "health", "science", "sports", "technology"];
   
   const [requestURL, setRequestURL] = useState(
-    `/.netlify/functions/news?country=${country}&category=general`
+    `/.netlify/functions/news?country=${country}&category=top`
   );
 
   const [articles, setArticles] = useState([]);
-  const [activeCategory, setActiveCategory] = useState("general");
+  const [activeCategory, setActiveCategory] = useState("top");
 
   const generateUI = (articles) => {
     return articles.map((item, index) => (
